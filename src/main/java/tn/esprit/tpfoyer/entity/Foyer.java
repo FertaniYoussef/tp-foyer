@@ -15,10 +15,12 @@ import java.util.Set;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Foyer {
-
+// voici un commentaire ajouté
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idFoyer;
+
+   String nomPropietaire;
 
     String nomFoyer;
     long capaciteFoyer;
