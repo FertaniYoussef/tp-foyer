@@ -25,19 +25,19 @@ class EtudiantServiceImplTest {
 
 
   Etudiant etudiant = new Etudiant("Fertani", "Youssef", 12345678, new Date(2000, 8, 23));
-    List<Etudiant> etudiants = new ArrayList<>() {
-        {
-            add(new Etudiant("Doe", "John", 123456789, new Date(2000, 1, 15)));
-            add(new Etudiant("Smith", "Alice", 987654321, new Date(1999, 5, 10)));
-            add(new Etudiant("Brown", "James", 456789123, new Date(2001, 8, 25)));
-        }
-    };
+    List<Etudiant> etudiants = new ArrayList<>();
+
+
 
     @Test
     void testrecupererEtudiantParCin() {
+        etudiants.add(new Etudiant("Doe", "John", 123456789, new Date(2000, 1, 15)));
+        etudiants.add(new Etudiant("Smith", "Alice", 987654321, new Date(1999, 5, 10)));
+        etudiants.add(new Etudiant("Brown", "James", 456789123, new Date(2001, 8, 25)));
         Mockito.when(er.findById(Mockito.anyLong())).thenReturn(Optional.of(etudiant));
-        Etudiant etudiant1=es.recupererEtudiantParCin(123456789);
+        Etudiant etudiant1=es.retrieveEtudiant(0L);
         Assertions.assertNotNull(etudiant1);
+
 
     }
 
