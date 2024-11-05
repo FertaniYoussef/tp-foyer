@@ -5,7 +5,7 @@ services:
     image: mariadb:10.6
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=foyer_bd
       - MYSQL_ROOT_HOST=%  # Allows root login from any host
     ports:
@@ -26,7 +26,7 @@ services:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/foyer_bd?createDatabaseIfNotExist=true",
         "spring.datasource.username" : "root",
-        "spring.datasource.password" : "rootpassword",
+        "spring.datasource.password" : "root",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQLDialect",
         "spring.jpa.hibernate.ddl-auto" : "update"
       }'
