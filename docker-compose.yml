@@ -2,21 +2,23 @@ version: "3.8"
 
 services:
   mysqldb:
-    image: mysql:5.7
+    image: mariadb:10.6
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_ALLOW_EMPTY_PASSWORD=no
       - MYSQL_DATABASE=foyer_bd
+      - MYSQL_ROOT_HOST=%  # Allows root login from any host
     ports:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
+    networks:
+      - mysql_network
+
   tp-foyer:
     depends_on:
       - mysqldb
     image: autismusprime/tp-foyer:5.0.0
-    #build : ./
     restart: on-failure
     ports:
       - 8089:8089
@@ -30,6 +32,12 @@ services:
       }'
     stdin_open: true
     tty: true
+    networks:
+      - mysql_network
 
 volumes:
-  db :
+  db:
+
+networks:
+  mysql_network:
+    driver: bridge
